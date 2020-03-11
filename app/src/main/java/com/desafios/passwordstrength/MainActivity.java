@@ -2,6 +2,7 @@ package com.desafios.passwordstrength;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements IPresenterView {
     TextWatcher watch= new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        texto.setBackgroundColor(color.);
+
         }
 
         @Override
@@ -47,22 +48,26 @@ public class MainActivity extends AppCompatActivity implements IPresenterView {
 
     @Override
     public void showEasy() {
-        tex
+        texto.setBackgroundColor(Color.RED);
+        texto.setText(R.string.weak);
     }
 
     @Override
     public void showMedium() {
-        return false;
+        texto.setBackgroundColor(getColor(R.color.orange));
+        texto.setText(R.string.medium);
     }
 
     @Override
     public void showHard() {
-        return false;
+        texto.setBackgroundColor(Color.YELLOW);
+        texto.setText(R.string.Strong);
     }
 
     @Override
     public void showVeryHard() {
-        return false;
+        texto.setBackgroundColor(Color.GREEN);
+        texto.setText(R.string.Very_strong);
     }
 
 }

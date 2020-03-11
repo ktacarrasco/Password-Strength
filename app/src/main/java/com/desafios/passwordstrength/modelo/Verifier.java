@@ -8,10 +8,10 @@ import com.desafios.passwordstrength.presenter.IPresenterView;
 
 public class Verifier {
 
-    public int weak;
-    public int medium;
-    public int strong;
-    public int veryStrong;
+    public static final int weak = 1;
+    public static final int medium = 2;
+    public static final int strong = 3;
+    public static final int veryStrong = 4;
 
 
     @VisibleForTesting
@@ -20,7 +20,7 @@ public class Verifier {
 
             return false;
         }
-        weak = 1;
+
         return true;
     }
 
@@ -31,7 +31,7 @@ public class Verifier {
                 return true;
             }
         }
-        medium = 1;
+
         return false;
     }
 
@@ -40,17 +40,16 @@ public class Verifier {
         if (!passw.matches(".*[A-Z].*")) {
             return false;
         }
-        strong = 1;
+
         return true;
     }
 
-    @VisibleForTesting
-    public boolean EvaluateAll() {
-        if (weak == 1 && medium == 1 && strong == 1 && veryStrong == 1) {
-            return true;
-        }
-        return false;
-    }
 
+    public int evaluatePassword(String passw) {
+        if (EvaluateLength(passw) && EvaluateLetter(passw) && EvaluateNumber(passw)) return veryStrong;
+        if (EvaluateLength(passw) && EvaluateLetter(passw)) return  strong;
+        if (EvaluateLength(passw)) return medium;
+        return weak;
+    }
 
 }
